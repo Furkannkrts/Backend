@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.DataAccess
 {
+    //ınsert,update,dalete operasyonlarımızın gerçekleştiği yer/REPOSİTORY PATTERN
     public interface IEntityRepository<T> where T : class,IEntity,new()
     {
         T get(Expression<Func<T, bool>> filter);

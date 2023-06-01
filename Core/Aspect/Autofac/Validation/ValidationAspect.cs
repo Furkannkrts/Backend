@@ -13,10 +13,10 @@ namespace Core.Aspect.Autofac.Validation
 {
     public class ValidationAspect:MethodInterceptions
     {
-        private Type _validatorType;
+        private Type _validatorType;//validatortype göndermek için ekliyoruz
         public ValidationAspect(Type validatorType)
         {
-            if (!typeof(IValidator).IsAssignableFrom(validatorType))
+            if (!typeof(IValidator).IsAssignableFrom(validatorType))//gönderilen validator type bir ıvalidator değilse
             {
                 throw new Exception(AspectMessages.WrongValidationType);
             }

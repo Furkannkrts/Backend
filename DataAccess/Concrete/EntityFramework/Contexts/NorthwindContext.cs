@@ -15,6 +15,7 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
         {
             optionsBuilder.UseSqlServer("Data Source=192.168.2.11; Initial Catalog=Northwind;User=sa;Password=qwq1234.");
         }
+        //veri tabanıyla ilgili nesnelerimizi bağladığımız yer
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<User> Users { get; set; }

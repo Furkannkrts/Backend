@@ -8,36 +8,36 @@ using System.Threading.Tasks;
 
 namespace Core.Utilities.Interceptors
 {
-    public abstract class MethodInterceptions:MethodInterceptionBaseAttribute
+    public abstract class MethodInterceptions:MethodInterceptionBaseAttribute//metod yorumladığım kısım 
     {
-        protected virtual void OnBefore (IInvocation ınvocation) { }
-        protected virtual void OnAfter(IInvocation ınvocation) { }
-        protected virtual void OnException(IInvocation ınvocation) { }
-        protected virtual void OnSuccess(IInvocation ınvocation) { }
+        protected virtual void OnBefore (IInvocation invocation) { }
+        protected virtual void OnAfter(IInvocation invocation) { }
+        protected virtual void OnException(IInvocation invocation) { }
+        protected virtual void OnSuccess(IInvocation invocation) { }
 
 
-        public override void Intercept(IInvocation ınvocation)
+        public override void Intercept(IInvocation invocation)
         {
             var isSuccess = true;
-            OnBefore(ınvocation);
+            OnBefore(invocation);
             try
             {
-                ınvocation.Proceed();
+                invocation.Proceed();//metodu çalıştır demek
 
             }
             catch (Exception e)
             {
                 isSuccess= false;
-                OnException(ınvocation);
+                OnException(invocation);
                 throw;
             }
             finally
             {
                 if(isSuccess)
                 {
-                    OnSuccess(ınvocation);
+                    OnSuccess(invocation);
                 }
-                OnAfter(ınvocation) ;
+                OnAfter(invocation) ;
             }     
         }
     }

@@ -1,3 +1,6 @@
+using Core.DependecnyResolvers;
+using Core.Extensions;
+using Core.Utilities.Ioc;
 using Core.Utilities.Security.Encyption;
 using Core.Utilities.Security.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -30,6 +33,7 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //servisler
 
             services.AddControllers();
             services.AddCors(options =>//izin vermediðimiz kullanýcýlarýn girmemesi kontrolü burda yapýlýr
@@ -54,6 +58,10 @@ namespace WebAPI
                     IssuerSigningKey=SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey),
                 };
             });
+            services.AddDependencyResolvers(new ICoreModule[]
+            {
+                new CoreModule()
+            });
 
         }
 
@@ -66,6 +74,12 @@ namespace WebAPI
   
             }
 
+            //Bu kod parçacýklarý, ASP.NET Core uygulamasýnda genellikle Startup.cs dosyasýnýn Configure metodu içinde yer alýr
+            //Bu sýralama, HTTPS yönlendirmesini etkinleþtirir, isteklerin yönlendirme ve kimlik doðrulama/
+            //otorizasyon iþlemlerinden geçmesini saðlar.Bu sayede, güvenli iletiþim saðlanýr ve kullanýcýlarýn kimlik 
+            //doðrulamasý ve yetkilendirme iþlemleri gerçekleþtirilir.(middleware)
+
+            //bunlarýn sýrasý önemli
             app.UseCors(builder=>builder.WithOrigins("http://localhost:3000").AllowAnyHeader());//burdan gelen talebe cevap ver demek
 
             app.UseHttpsRedirection();

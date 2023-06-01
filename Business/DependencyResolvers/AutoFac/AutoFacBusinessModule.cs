@@ -37,7 +37,7 @@ namespace Business.DependencyResolvers.AutoFac
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces() 
                 .EnableInterfaceInterceptors(new ProxyGenerationOptions()
                 {
-                    Selector=new AspectInterceptorSelector()
+                    Selector=new AspectInterceptorSelector()//core'da bunun class'ını oluşturduk
                 }).SingleInstance();
 
         }
